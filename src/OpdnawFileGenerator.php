@@ -53,7 +53,8 @@ class OpdnawFileGenerator
                 $this->order->addDepositTransferCard(),
                 $this->order->addPrices(),
                 $this->order->getPaymentReference(),
-                $this->order->addSeperateBill()
+                $this->order->addSeperateBill(),
+                $this->order->getPortoCosts()
             );
         }
 

@@ -22,6 +22,7 @@ class Order
     private $addDepositTransferCard;
     private $addSeperateBill;
     private $addPrices;
+    private $portoCosts = 0;
 
     /**
      * @var ArrayIterator
@@ -155,5 +156,17 @@ class Order
     public function addPrices()
     {
         return $this->addPrices;
+    }
+
+    public function setPortoCosts($portocosts)
+    {
+        $this->portoCosts = $portocosts;
+
+        return $this;
+    }
+
+    public function getPortoCosts()
+    {
+        return $this->portoCosts;
     }
 }

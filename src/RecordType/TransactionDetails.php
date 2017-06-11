@@ -17,17 +17,19 @@ class TransactionDetails extends AbstractRecordType implements RecordTypeInterfa
     private $reference;
     private $customerReference;
     private $addPortoCosts;
+    private $portoCosts;
     private $addDepositTransferCard;
     private $addPrices;
     private $paymentReference;
     private $addSeperateBill;
 
-    public function __construct(DateTime $date, $reference = null, $customerReference = null, $addDepositTransferCard = false, $addPrices = false, $paymentReference, $addSeperateBill = false)
+    public function __construct(DateTime $date, $reference = null, $customerReference = null, $addDepositTransferCard = false, $addPrices = false, $paymentReference, $addSeperateBill = false, $portoCosts = 0)
     {
         $this->date = $date;
         $this->reference = $reference;
         $this->customerReference = $customerReference;
-        $this->addPortoCosts = false;
+        $this->addPortoCosts = $portoCosts > 0;
+        $this->portoCosts = $portoCosts;
         $this->addDepositTransferCard = $addDepositTransferCard;
         $this->addPrices = $addPrices;
         $this->paymentReference = $paymentReference;
@@ -37,7 +39,7 @@ class TransactionDetails extends AbstractRecordType implements RecordTypeInterfa
 
     public function getData()
     {
-        return sprintf('#0001%s#0400%s#0401%s%s#0404%s#0405%s#0417%s#0419%s#0420%s#0421%s#0427%s',
+        return sprintf('#0001%s#0400%s#0401%s%s#0404%s#0405%s#0417%s%s#0419%s#0420%s#0421%s#0427%s',
             $this->code,
             $this->type,
             $this->date->format('Ymd'),
@@ -45,6 +47,7 @@ class TransactionDetails extends AbstractRecordType implements RecordTypeInterfa
             $this->customerReference,
             $this->addSeperateBill ? 'J' : 'N',
             $this->addPortoCosts ? 'J' : 'N',
+            $this->addPortoCosts ? sprintf('#0418%s', $this->portoCosts) : '',
             $this->addDepositTransferCard ? 'J' : 'N',
             $this->addPrices ? 'J' : 'N',
             $this->paymentReference,
