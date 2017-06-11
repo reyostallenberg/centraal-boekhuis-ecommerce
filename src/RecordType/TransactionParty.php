@@ -45,7 +45,8 @@ class TransactionParty extends AbstractRecordType implements RecordTypeInterface
             '0123' => 'housenumberAddition',
             '0124' => 'postalcode',
             '0125' => 'city',
-            '0126' => 'country',
+            '0126' => 'province',
+            '0127' => 'country',
         ],
     ];
 
