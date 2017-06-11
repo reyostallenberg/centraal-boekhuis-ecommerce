@@ -31,10 +31,13 @@ class Address
 
     public function __construct($street, $housenumber, $housenumberAddition, $postalcode, $city, $attn = null, $country = 'NL')
     {
+        if ($housenumber != '') {
+            $housenumber = (int) substr($housenumber, 0, 6);
+        }
         $this->attn = substr($attn, 0, 55);
         $this->address = [
             'street' => substr($street, 0, 43),
-            'housenumber' => (int) substr($housenumber, 0, 6),
+            'housenumber' => $housenumber,
             'housenumberAddition' => substr($housenumberAddition, 0, 10),
             'postalcode' => substr($postalcode, 0, 10),
             'city' => substr($city, 0, 40),
