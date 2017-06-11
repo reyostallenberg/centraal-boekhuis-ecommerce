@@ -29,7 +29,7 @@ class Address
      */
     private $address;
 
-    public function __construct($street, $housenumber, $housenumberAddition, $postalcode, $city, $attn = null, $country = 'NL')
+    public function __construct($street, $housenumber, $housenumberAddition = null, $postalcode, $city, $province = null, $attn = null, $country = 'NL')
     {
         $this->attn = substr($attn, 0, 55);
         $this->address = [
@@ -38,6 +38,7 @@ class Address
             'housenumberAddition' => substr($housenumberAddition, 0, 10),
             'postalcode' => substr($postalcode, 0, 10),
             'city' => substr($city, 0, 40),
+            'province' => substr($province, 0, 40),
             'country' => substr($country, 0, 2),
         ];
     }
@@ -53,7 +54,12 @@ class Address
         if (!is_null($this->attn)) {
             $data['attn'] = $this->attn;
         }
+
+        $optional = ['housenumberAddition', 'province'];
         foreach ($this->address as $key => $value) {
+            if (empty($value) && in_array($key, $optional)) {
+                continue;
+            }
             $data[$key] = $value;
         }
 

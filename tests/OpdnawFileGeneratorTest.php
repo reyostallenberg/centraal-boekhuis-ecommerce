@@ -71,11 +71,11 @@ class OpdnawFileGeneratorTest extends TestCase
         $textD = new Text(['-', 'Bestelde artikelen worden niet retour genomen.', '-', 'Hartelijk dank voor uw bestelling'], Text::PAYMENT_MARKETING);
         $order->addText($textD);
 
-        $customerAddress = new Address('straat', '6', '-a', '8888YY', 'PLAATS', 'T.a.v. consument', 'NL');
+        $customerAddress = new Address('straat', '6', '-a', '8888YY', 'PLAATS', null, 'T.a.v. consument', 'NL');
         $customer = new Customer(9999999, 'Naam Consument', $customerAddress);
         $order->setCustomer($customer);
 
-        $billingAddressAddress = new Address('straat', '99', '4-hoog', '7777WW', 'PLAATS', 'T.a.v.Crediteurenadministratie', 'NL');
+        $billingAddressAddress = new Address('straat', '99', '4-hoog', '7777WW', 'PLAATS', null, 'T.a.v.Crediteurenadministratie', 'NL');
         $billingAddress = new BillingAddress(9999999, 'Naam Factuur ontvangerl', $billingAddressAddress);
         $order->setBillingAddress($billingAddress);
         $order->setPaymentReference($paymentReference);
