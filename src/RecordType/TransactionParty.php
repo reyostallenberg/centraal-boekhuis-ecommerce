@@ -111,7 +111,7 @@ class TransactionParty extends AbstractRecordType implements RecordTypeInterface
         $data = $this->data->toArray();
         $templates = static::TEMPLATES;
         foreach ($templates[$this->name] as $fieldIdentifier => $fieldName) {
-            if (isset($data[$fieldName])) {
+            if (isset($data[$fieldName]) && $data[$fieldName] != '') {
                 $row .= sprintf('#%s%s', $fieldIdentifier, $data[$fieldName]);
             }
         }

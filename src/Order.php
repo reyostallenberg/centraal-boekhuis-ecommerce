@@ -7,9 +7,9 @@ use ArrayObject;
 use DateTime;
 
 /**
- * Description of OrderContainer.
+ * The Order.
  *
- * @author reyo
+ * @author Reyo Stallenberg <reyostallenberg@gmail.com>
  */
 class Order
 {

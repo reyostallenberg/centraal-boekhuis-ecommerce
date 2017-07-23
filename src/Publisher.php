@@ -3,9 +3,9 @@
 namespace Reyostallenberg\CentraalBoekhuisEcommerce;
 
 /**
- * Description of Publisher.
+ * The Publisher.
  *
- * @author reyo
+ * @author Reyo Stallenberg <reyostallenberg@gmail.com>
  */
 class Publisher
 {
