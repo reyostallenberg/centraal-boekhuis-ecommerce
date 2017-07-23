@@ -10,6 +10,7 @@ use Reyostallenberg\CentraalBoekhuisEcommerce\RecordType\RecordTypeInterface;
 use Reyostallenberg\CentraalBoekhuisEcommerce\RecordType\Text as TextRecord;
 use Reyostallenberg\CentraalBoekhuisEcommerce\RecordType\TransactionDetails;
 use Reyostallenberg\CentraalBoekhuisEcommerce\RecordType\TransactionParty;
+use RuntimeException;
 
 /**
  * OpdnawFileGenerator.
@@ -39,12 +40,15 @@ class OpdnawFileGenerator
         if (is_null($header)) {
             $header = new Header($this->order->getIdentifier(), $this->order->getDate());
         }
+
         if (is_null($sender)) {
             $sender = new InvolvedParty($this->publisher->getIdentifier(), static::DEFAULT_RECEIVER_NAME, InvolvedParty::SENDER);
         }
+
         if (is_null($receiver)) {
             $receiver = new InvolvedParty(static::DEFAULT_RECEIVER_IDENTIFIER, static::DEFAULT_RECEIVER_NAME, InvolvedParty::RECEIVER);
         }
+
         if (is_null($transactionDetails)) {
             $transactionDetails = new TransactionDetails(
                 $this->order->getDate(),
@@ -79,9 +83,11 @@ class OpdnawFileGenerator
         if (is_null($publisher)) {
             $publisher = new TransactionParty(TransactionParty::PUBLISHER, $this->publisher, static::DEFAULT_TRANSACTION_PARTY_NAME);
         }
+
         if (is_null($customer)) {
             $customer = new TransactionParty(TransactionParty::CUSTOMER, $this->order->getCustomer());
         }
+
         if (empty($products)) {
             $products = [];
             foreach ($this->order->getProducts() as $product) {
@@ -156,12 +162,16 @@ class OpdnawFileGenerator
     {
         $this->totals = [];
 
-        return array_merge(
+        $data = array_merge(
             $this->getFileHeader(),
             $this->getFileBody(),
             $this->getFileFreeText(),
             $this->getFileFooter()
         );
+
+        $this->validate($data);
+
+        return $data;
     }
 
     private function addToTotals(RecordTypeInterface $record)
@@ -171,5 +181,39 @@ class OpdnawFileGenerator
         }
 
         ++$this->totals[$record->getCode()];
+    }
+
+    /**
+     * Validate the created message.
+     *
+     * @param array $data
+     *
+     * @throws RuntimeException
+     */
+    private function validate(array $data)
+    {
+        foreach ($data as $row) {
+            $rowData = explode('#', ltrim($row, '#'));
+            $rowDataParsed = [];
+            foreach ($rowData as $rowFieldRaw) {
+                $rowDataParsed[substr($rowFieldRaw, 0, 4)] = substr($rowFieldRaw, 4);
+            }
+
+            $validatorClass = sprintf(
+                'Reyostallenberg\\CentraalBoekhuisEcommerce\\Validator\\Row%s',
+                 array_shift($rowDataParsed)
+            );
+
+            $validator = new $validatorClass($rowDataParsed);
+            $foundViolations = $validator->validate();
+
+            foreach ($foundViolations as $violations) {
+                if (0 !== count($violations)) {
+                    foreach ($violations as $violation) {
+                        throw new RuntimeException($violation->getMessage());
+                    }
+                }
+            }
+        }
     }
 }

@@ -12,10 +12,15 @@ use Reyostallenberg\CentraalBoekhuisEcommerce\Product as OrderProduct;
 class Product extends AbstractRecordType implements RecordTypeInterface
 {
     protected $code = 4;
-    private $product;
-    private $reference;
 
-    private $products;
+    private $product;
+
+    /**
+     * The reference to the product.
+     *
+     * @var array
+     */
+    private $reference;
 
     public function __construct(OrderProduct $product, $reference)
     {
@@ -23,6 +28,11 @@ class Product extends AbstractRecordType implements RecordTypeInterface
         $this->reference = $reference;
     }
 
+    /**
+     * Get the data for the Product.
+     *
+     * @return string
+     */
     public function getData()
     {
         $data = sprintf('#0001%s#0200%s#0430%s#0434%s#0435%s#0440%s',

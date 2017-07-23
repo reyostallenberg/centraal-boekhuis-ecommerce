@@ -9,6 +9,11 @@ namespace Reyostallenberg\CentraalBoekhuisEcommerce\RecordType;
  */
 abstract class AbstractRecordType
 {
+    /**
+     * Get the code of the RecordType.
+     *
+     * @return type
+     */
     public function getCode()
     {
         return $this->code;

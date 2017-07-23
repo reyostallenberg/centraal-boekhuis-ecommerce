@@ -9,5 +9,17 @@ namespace Reyostallenberg\CentraalBoekhuisEcommerce\RecordType;
  */
 interface RecordTypeInterface
 {
+    /**
+     * Get the code for the row.
+     *
+     * @return int
+     */
     public function getCode();
+
+    /**
+     * Get the data for the RecordType.
+     *
+     * @return string
+     */
+    public function getData();
 }

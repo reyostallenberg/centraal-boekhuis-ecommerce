@@ -11,8 +11,25 @@ use DateTime;
  */
 class TransactionDetails extends AbstractRecordType implements RecordTypeInterface
 {
+    /**
+     * The code of this row.
+     *
+     * @var int
+     */
     protected $code = 2;
+
+    /**
+     * The type of transaction.
+     *
+     * @var string
+     */
     private $type = 'LNEIG';
+
+    /**
+     * The date of the transaction.
+     *
+     * @var DateTime
+     */
     private $date;
     private $reference;
     private $customerReference;
@@ -37,6 +54,11 @@ class TransactionDetails extends AbstractRecordType implements RecordTypeInterfa
         $this->sendBillSeparate = $addSeperateBill;
     }
 
+    /**
+     * Get the data for the TransactionDetails.
+     *
+     * @return string
+     */
     public function getData()
     {
         return sprintf('#0001%s#0400%s#0401%s%s#0404%s#0405%s#0417%s%s#0419%s#0420%s#0421%s#0427%s',
@@ -55,6 +77,11 @@ class TransactionDetails extends AbstractRecordType implements RecordTypeInterfa
         );
     }
 
+    /**
+     * Does this order need a separate bill.
+     *
+     * @return bool
+     */
     public function needsSeparateBill()
     {
         return $this->separateBill;

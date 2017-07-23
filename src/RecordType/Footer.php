@@ -9,6 +9,11 @@ namespace Reyostallenberg\CentraalBoekhuisEcommerce\RecordType;
  */
 class Footer extends AbstractRecordType implements RecordTypeInterface
 {
+    /**
+     * The code of this row.
+     *
+     * @var int
+     */
     protected $code = 9;
     private $totals;
     private $reference;
@@ -19,6 +24,11 @@ class Footer extends AbstractRecordType implements RecordTypeInterface
         $this->totals = $totals;
     }
 
+    /**
+     * Get the data for the Footer.
+     *
+     * @return string
+     */
     public function getData()
     {
         $totals = [

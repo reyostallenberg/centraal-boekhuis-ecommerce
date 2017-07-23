@@ -9,14 +9,50 @@ namespace Reyostallenberg\CentraalBoekhuisEcommerce\RecordType;
  */
 class TransactionParty extends AbstractRecordType implements RecordTypeInterface
 {
+    /**
+     * Publisher is the TransactionParty.
+     */
     const PUBLISHER = 'AFN';
+
+    /**
+     * Customer is the TransactionParty.
+     */
     const CUSTOMER = 'ONTV';
+
+    /**
+     * Billing address is the TransactionParty.
+     */
     const BILLING_ADDRESS = 'OFA';
 
+    /**
+     * The code of this row.
+     *
+     * @var int
+     */
     protected $code = 3;
+
+    /**
+     * The type of TransactionParty.
+     *
+     * @var string
+     */
     private $type;
+
+    /**
+     * @var string
+     */
     private $identifier;
+
+    /**
+     * The name of the TransactionParty.
+     *
+     * @var string
+     */
     private $name;
+
+    /**
+     * Templates of fields for different kinds of names.
+     */
     const TEMPLATES = [
         'CB' => [
             '0135' => 'publisher_iban',
@@ -58,6 +94,11 @@ class TransactionParty extends AbstractRecordType implements RecordTypeInterface
         $this->identifier = $data->getIdentifier();
     }
 
+    /**
+     * Get the data for the TransactionParty.
+     *
+     * @return string
+     */
     public function getData()
     {
         $row = sprintf('#0001%s#0009%s#0010%s#0011%s',
