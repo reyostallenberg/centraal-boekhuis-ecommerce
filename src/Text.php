@@ -1,17 +1,11 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Reyostallenberg\CentraalBoekhuisEcommerce;
 
 /**
- * Description of Text.
+ * Texts.
  *
- * @author reyo
+ * @author Reyo Stallenberg <reyostallenberg@gmail.com>
  */
 class Text
 {
