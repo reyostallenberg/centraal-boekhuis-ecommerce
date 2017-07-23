@@ -9,6 +9,11 @@ namespace Reyostallenberg\CentraalBoekhuisEcommerce\RecordType;
  */
 class Text extends AbstractRecordType implements RecordTypeInterface
 {
+    /**
+     * The code of this row.
+     *
+     * @var int
+     */
     protected $code = 5;
     private $text;
     private $type;

@@ -45,21 +45,21 @@ class OpdnawFileGeneratorTest extends TestCase
         $date = new DateTime('2013-01-31 17:08:38');
         $order = new Order($orderId, $date, $reference);
 
-        $productA = new Product(9789085013400);
+        $productA = new Product(9789085013402);
         $productA->setPrice(7.00);
         $order->addProduct($productA);
 
-        $productB = new Product(9789073013820);
+        $productB = new Product(9789073013827);
         $order->addProduct($productB);
 
         $productC = new Product(9789490013868);
         $order->addProduct($productC);
 
-        $productD = new Product(9789050998165);
+        $productD = new Product(9789050998161);
         $productD->setPrice(15.00);
         $order->addProduct($productD);
 
-        $productE = new Product(9789013998578);
+        $productE = new Product(9789013998573);
         $order->addProduct($productE);
 
         $textA = new Text([sprintf('Bestelnummer: %s, Factuurnummer: 20130271-1', $reference)], Text::HEADER);
