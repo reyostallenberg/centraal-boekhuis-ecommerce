@@ -105,7 +105,7 @@ class Row2 extends AbstractRowValidator implements RowValidatorInterface
                 ]),
                 new Callback(function ($value, $context) {
                     if ($value == 'J' && $this->data['0420'] != 'J') {
-                       $context->buildViolation('The value of field 0405 in row 2 can only be J when the value of field 0420 is also J')->addViolation();
+                        $context->buildViolation('The value of field 0405 in row 2 can only be J when the value of field 0420 is also J')->addViolation();
                     }
                 }),
             ],

@@ -186,8 +186,6 @@ class OpdnawFileGenerator
     /**
      * Validate the created message.
      *
-     * @param array $data
-     *
      * @throws RuntimeException
      */
     private function validate(array $data)

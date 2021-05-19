@@ -11,15 +11,15 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "^7.2",
-        "symfony/console": "^3.4 || ^4.3",
-        "symfony/validator": "^3.4 || ^4.3"
+        "php": "^7.4",
+        "symfony/console": "^4.4 || ^5.2",
+        "symfony/validator": "^4.4 || ^5.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.3",
         "gorhill/php-fine-diff": "^0.1.0",
         "phpunit/phpunit": "^5.7",
-        "symfony/var-dumper": "^3.4 || ^4.3"
+        "symfony/var-dumper": "^4.4 || ^5.2"
     },
     "autoload": {
         "psr-4": {"Reyostallenberg\\CentraalBoekhuisEcommerce\\": "src/"}

@@ -40,7 +40,7 @@ class Footer extends AbstractRecordType implements RecordTypeInterface
         ];
 
         $totalData = '';
-        foreach ($totals as  $key => $type) {
+        foreach ($totals as $key => $type) {
             $total = isset($this->totals[$type]) ? $this->totals[$type] : 0;
             $totalData .= sprintf('#%s%s', $key, $total);
         }

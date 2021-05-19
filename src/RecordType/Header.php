@@ -70,8 +70,7 @@ class Header extends AbstractRecordType implements RecordTypeInterface
     /**
      * Create the header of the order.
      *
-     * @param string   $identifier
-     * @param DateTime $orderDateTime
+     * @param string $identifier
      */
     public function __construct($identifier, DateTime $orderDateTime)
     {
